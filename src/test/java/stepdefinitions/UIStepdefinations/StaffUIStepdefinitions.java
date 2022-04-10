@@ -2,25 +2,26 @@ package stepdefinitions.UIStepdefinations;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import pages.StaffPage;
 import utilities.Driver;
-import utilities.JSUtils;
 import utilities.ReusableMethods;
-
 import java.util.List;
 
 public class StaffUIStepdefinitions {
     StaffPage sp = new StaffPage();
     Faker faker = new Faker();
+    Actions actions = new Actions(Driver.getDriver());
+    Select select;
     String newId = "1212";
     String Ssn = "365-34-2321";
+
     @Then("My Pages menusune tiklar")
     public void MyPagesMenusuneTiklar() {
     Driver.waitAndClick(sp.myPagesLink,10);
@@ -48,7 +49,6 @@ Driver.waitAndClick(sp.EditButton);
     @And("{string} in duzenler")
     public void inDuzenlenebilirOldugunuDogrular(String str) {
         WebElement DegisecekElement = null;
-        Actions actions = new Actions(Driver.getDriver());
 
         switch(str) {
 
@@ -86,37 +86,47 @@ Driver.waitAndClick(sp.EditButton);
                 DegisecekElement = sp.PhoneTextBox;
                 Driver.waitAndClick(DegisecekElement);
                 DegisecekElement.clear();
-                Driver.waitAndSendText(DegisecekElement,faker.phoneNumber().cellPhone());
+                Driver.waitAndSendText(DegisecekElement,"1587646490");
                 break;
                 case "BirthDate":
                 DegisecekElement = sp.BirthDateTextBox;
                     Driver.waitAndClick(DegisecekElement);
                     DegisecekElement.clear();
                     actions.sendKeys("04.04.2022"+Keys.TAB).sendKeys("24:00").perform();
-
                 break;
             case "Gender":
                 DegisecekElement = sp.GenderTextBox;
+                actions.sendKeys(Keys.PAGE_DOWN).perform();
+                select = new Select(DegisecekElement);
+                select.selectByIndex(0);
 
                 break;
             case "Blood Group":
                 DegisecekElement = sp.BloodGroupTextBox;
-
+                actions.sendKeys(Keys.PAGE_DOWN).perform();
+                select = new Select(DegisecekElement);
+                select.selectByIndex(0);
                 break;
                 case "user":
                 DegisecekElement = sp.userTextBox;
-
+                    actions.sendKeys(Keys.PAGE_DOWN).perform();
+                    select = new Select(DegisecekElement);
+                    select.selectByIndex(5);
                 break;
                 case "country":
                 DegisecekElement = sp.countryTextBox;
-
+                    actions.sendKeys(Keys.PAGE_DOWN).perform();
+                    select = new Select(DegisecekElement);
+                    select.selectByVisibleText("Turkey");
                     break;
                 case "State City":
                 DegisecekElement = sp.cstateTextBox;
-
+                    actions.sendKeys(Keys.PAGE_DOWN).perform();
+                    select = new Select(DegisecekElement);
+                    select.selectByIndex(0);
                     break;
         }
-
+actions.sendKeys(Keys.PAGE_DOWN).perform();
 }
 
     @Then("search textbox'ina ssn bilgisi girer")
@@ -140,46 +150,28 @@ Driver.waitAndClick(sp.EditButton);
         WebElement SilinecekElement = null;
 
         switch(str) {
-            case "id":
-                SilinecekElement = sp.IdTextBox;
-                break;
             case "First Name":
                 SilinecekElement = sp.FirstNameTextBox;
+                Driver.wait(3);
+                SilinecekElement.clear();
                 break;
             case "Last Name":
                 SilinecekElement = sp.LastNameTextBox;
-
-                break;
-            case "BirthDate":
-                SilinecekElement = sp.BirthDateTextBox;
-                break;
-            case "Email":
-                SilinecekElement = sp.EmailTextBox;
-                break;
-            case "Phone":
-                SilinecekElement = sp.PhoneTextBox;
-                break;
-            case "Gender":
-                SilinecekElement = sp.GenderTextBox;
-                break;
-            case "Blood Group":
-                SilinecekElement = sp.BloodGroupTextBox;
-                break;
+                Driver.wait(3);
+                SilinecekElement.clear();
             case "adress":
                 SilinecekElement = sp.adressTextBox;
+                Driver.wait(3);
+                actions.sendKeys(Keys.PAGE_DOWN).perform();
+                SilinecekElement.clear();
                 break;
             case "description":
                 SilinecekElement = sp.descriptionTextBox;
+                Driver.wait(3);
+                actions.sendKeys(Keys.PAGE_DOWN).perform();
+                SilinecekElement.clear();
                 break;
-            case "user":
-                SilinecekElement = sp.userTextBox;
-                break;
-            case "country":
-                SilinecekElement = sp.countryTextBox;
-                break;
-            case "State City":
-                SilinecekElement = sp.cstateTextBox;
-                break;}
+              }
         Driver.wait(5);
 
 
@@ -189,10 +181,8 @@ Driver.waitAndClick(sp.EditButton);
 
     @And("Save butonuna tiklar.")
     public void saveButonunaTiklar() {
-    JSUtils.scrollIntoVIewJS(sp.saveButton);
-    sp.saveButton.click();
+        Driver.wait(3);
         Driver.waitAndClick(sp.saveButton);
-
     }
 
     @And("update isleminin gerceklestigi uyarisinin ciktigini dogrular")
@@ -228,7 +218,10 @@ Driver.waitAndClick(sp.EditButton);
     @And("id'yi duzenler")
     public void idYiDuzenler() {
         Driver.waitAndClick(sp.IdTextBox);
-        sp.IdTextBox.clear();
+
+       try{ sp.IdTextBox.clear();}catch(Exception IOException){
+           Assert.assertTrue(false);
+        }
         Driver.waitAndSendText(sp.IdTextBox,newId);
     }
 
@@ -236,5 +229,6 @@ Driver.waitAndClick(sp.EditButton);
     public void idDekiDuzenlemeninGerceklestiginiDogrular() {
         Assert.assertTrue(sp.IdTextBox.getText().equals(newId));
     }
+
 }
 

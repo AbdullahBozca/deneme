@@ -51,37 +51,35 @@ public class StaffPage {
     @FindBy(xpath = "//input[@name='phone']")
     public WebElement PhoneTextBox;
 
-    @FindBy(xpath = "//input[@name='gender']")
+    @FindBy(xpath = "//select[@name='gender']")
     public WebElement GenderTextBox;
 
-    @FindBy(xpath = "//input[@name='bloodGroup']")
+    @FindBy(xpath = "//select[@name='bloodGroup']")
     public WebElement BloodGroupTextBox;
 
-    @FindBy(xpath = "//input[@name='adress']")
+    @FindBy(xpath = "//input[@id='patient-adress']")
     public WebElement adressTextBox;
 
-    @FindBy(xpath = "//input[@name='description']")
+    @FindBy(xpath = "//textarea[@id='patient-description']")
     public WebElement descriptionTextBox;
 
-    @FindBy(xpath = "//input[@name='user.id']")
+    @FindBy(xpath = "//select[@name='user.id']")
     public WebElement userTextBox ;
 
-    @FindBy(xpath = "//input[@name='country.id']")
+    @FindBy(xpath = "//select[@name='country.id']")
     public WebElement countryTextBox;
 
-    @FindBy(xpath = "//input[@name='cstate.id']")
+    @FindBy(xpath = "//select[@name='cstate.id']")
     public WebElement cstateTextBox;
 
     @FindBy(xpath = "//input[@class='form-control']")
     public WebElement SearchTextBox;
 
-    @FindBy(xpath = "//span[text()='Create or edit a Patient']")
-    public WebElement herhangiBirYer;
 
     @FindBy(xpath = "//*[contains(text(), 'A Patient is updated with identifier')]")
     public WebElement toastContainerUpdateMassage;
 
-    @FindBy(id = "save-entity")
+    @FindBy(xpath= "//button[@id='save-entity']")
     public WebElement saveButton;
 
     @FindBy(xpath = "//*[text()='DELETE']")
@@ -89,7 +87,6 @@ public class StaffPage {
 
     @FindBy(xpath = "//*[text()='Delete']")
     public WebElement DeleteButton2;
-
     public List<WebElement> getHastaBilgileri() {
         List<WebElement> hastabilgileri = Driver.getDriver().findElements(By.xpath("//tbody/tr/td"));
 

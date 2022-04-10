@@ -10,7 +10,7 @@ hs_err_pid*
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
 *.iml
 ## Directory-based project format:
-../MedunnaProjectTeam87_seleniumServer/.idea/
+.idea/
 # if you remove the above rule, at least ignore the following:
 # User-specific stuff:
 # .idea/workspace.xml

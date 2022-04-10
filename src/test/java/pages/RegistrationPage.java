@@ -105,4 +105,20 @@ public class RegistrationPage {
     @FindBy(xpath = "(//*[@class='invalid-feedback'])")
     public WebElement generalInvalidFeedback;
 
+
+
+    //==============================HASAN==========================
+    @FindBy(xpath = "//*[.='Your SSN is required.']")
+    public WebElement yourSSNisRequired;
+
+    @FindBy(xpath = "//li[@id='account-menu']")
+    public WebElement accountMenu;
+
+    @FindBy(xpath = "(//*[@class='dropdown-item'])[1]")
+    public WebElement signIn;
+
+    @FindBy(xpath = "(//*[@class='dropdown-item'])[2]")
+    public WebElement Register;
+
+
 }

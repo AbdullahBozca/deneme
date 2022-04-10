@@ -113,7 +113,7 @@ Feature:  US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmal
     And New password text box sina "<New Password>" deger girilir
     And Password strength guclu seviyede oldugu gorulmeli
     And Yeni Password kaydedilmelidir
-
+    And sayfayi kapatir
 
     Examples: test data
       | Username              | Password | New Password |
@@ -139,9 +139,7 @@ Feature:  US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmal
     And  Kullanici gecerli "<Password>" girer
     And kullanici sing in butonuna tiklar
     Then Authentication information not connect. yazisi gorulur
-
-
-
+    And sayfayi kapatir
 
     Examples: test data
       | Username              | Password | New Password |

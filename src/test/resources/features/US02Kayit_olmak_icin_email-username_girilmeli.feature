@@ -7,7 +7,7 @@ Feature: US_002  Kayit olmak icin email and username bilgileri girilebilmelidir.
     And kullanici register elementine tiklar
 
 
-  Scenario Outline: TC01_Herhangi bir karakter iceren ve bos birakilamayan gecerli bir "Username" olmalidir
+  Scenario: TC01_Herhangi bir karakter iceren ve bos birakilamayan gecerli bir "Username" olmalidir
     Given Username kutusuna herhangi bir karakter girildiginde uyari cikmadigini test eder
     Then Bos birakildiginda Your username is required. yazisinin ciktigini test eder (Negative test)
     And sayfayi kapatir
@@ -25,7 +25,7 @@ Feature: US_002  Kayit olmak icin email and username bilgileri girilebilmelidir.
       | falanfilangmail.com |
       | falanfilangmailcom  |
 
-  Scenario Outline: TC04_E-mail bos birakilamaz
+  Scenario: TC04_E-mail bos birakilamaz
     Given Email kutusu bos birakildiginda Your email is required. yazisinin ciktigini test eder (Negative test)
     And sayfayi kapatir
 

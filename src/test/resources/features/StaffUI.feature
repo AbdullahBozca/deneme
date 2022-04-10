@@ -12,12 +12,12 @@ Feature: US09 Staff (Personel), hasta bilgilerini görebilmeli, düzenleyebilmel
     And Search Patient secenegine tiklar
 
   @US09_TC1
-    #ItWorks
  Scenario: TC001 "My Pages" sekmesinden hasta bilgilerini görebilmelidir.
    And hasta bilgilerinin gorulebildigini dogrular
 
+
     @US09_TC2
-      Scenario:
+    Scenario:TC02 Kullanıcı "id" bilgisini düzenleyebilmelidir.
       And herhangi bir edit butonuna tiklar
       And id'yi duzenler
       And id'deki duzenlemenin gerceklestigini dogrular
@@ -25,7 +25,7 @@ Feature: US09 Staff (Personel), hasta bilgilerini görebilmeli, düzenleyebilmel
 
 
   @US09_TC3-15
- Scenario Outline: : TC003-015 Kullanıcı bütün hasta bilgilerini "id, firstname, lastname, birthdate, email, phone, gender,
+ Scenario Outline: : TC003-015 Kullanıcı bütün hasta bilgilerini "firstname, lastname, birthdate, email, phone, gender,
  blood group, address, description, user, country and state/city" düzenleyebilmelidir.
    And herhangi bir edit butonuna tiklar
    And "<TextBox>" in duzenler
@@ -34,9 +34,9 @@ Feature: US09 Staff (Personel), hasta bilgilerini görebilmeli, düzenleyebilmel
 
    Examples:
      |TextBox    |
+     |BirthDate  |
      |First Name |
      |Last Name  |
-     |BirthDate  |
      |Email      |
      |Phone      |
      |Gender     |
@@ -48,7 +48,7 @@ Feature: US09 Staff (Personel), hasta bilgilerini görebilmeli, düzenleyebilmel
      |State City |
 
   @US09_TC16
-     #ItWorks
+
   Scenario: TC016 Kullanıcı, SSN'lerine göre aradigi bir başvuru sahibinin tüm
   kayıt bilgilerinin doldurulduğunu görebilmelidir.
     Then search textbox'ina ssn bilgisi girer
@@ -63,27 +63,24 @@ Feature: US09 Staff (Personel), hasta bilgilerini görebilmeli, düzenleyebilmel
 
     Examples:
     |hasta bilgisi|
-    |First Name   |
-    |Last Name    |
     |adress       |
     |description  |
+    |First Name   |
+    |Last Name    |
 
   @US09_TC20
-     #ItWorks
   Scenario: TC020 Kullanici hastalari silemez.
     And herhangi bir delete butonu olmadigini dogrular
     Then herhangi bir edit butonuna tiklar
     And herhangi bir delete butonu olmadigini dogrular
 
   @US09_TC21
-     #ItWorks
   Scenario: TC021 Staff, hastaları SSN kimliklerine göre arayabilir.
     And search textbox'ina ssn bilgisi girer
     Then aranan ssne sahip patientin ciktigini test eder
 
 
   @US09_TC22
-    #ItWorks
   Scenario: TC022 aranan hastaların SSN kimlikleri unique(tek,essiz)'dir.
     And search textbox'ina ssn bilgisi girer
     Then aranan ssne sahip patientin essiz oldugunu test eder
